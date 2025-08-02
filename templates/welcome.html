@@ -1,0 +1,33 @@
+<h1>Welcome, {{ username }}!</h1><a href="{{ url_for('logout') }}" class="btn btn-outline-danger float-end">Logout</a>
+
+
+{% if user_type == 'Admin' %}
+    <div class="admin-tools">
+        <h2>Admin Dashboard</h2>
+        
+    </div>
+    <div class="list-group">
+            <a href="/employer/applications" class="list-group-item list-group-item-action">Manage Applications</a>
+        </div>
+{% elif user_type == 'Student' %}
+    <div class="student-dashboard">
+        <h2>Student Portal</h2>
+        
+    </div>
+    <div class="list-group">
+            <a href="/student" class="list-group-item list-group-item-action">Browse Internships Applications</a>
+            <a href="{{ url_for('student') }}/{{session['student_id']}}" class="list-group-item list-group-item-action">View My Applications</a>
+            <a href="{{ url_for('student') }}/{{session['student_id']}}/profile" class="list-group-item list-group-item-action">Manage My Profile</a>
+        
+        </div>
+{% elif user_type == 'Employer' %}
+    <div class="list-group">
+            <a href="/employer/applications" class="list-group-item list-group-item-action">Manage Applications</a>
+            <a href="/employer/profile" class="list-group-item list-group-item-action">Edit Company Profile</a>
+        </div>
+{% else %}
+    <div class="generic-view">
+        <h2>Welcome</h2>
+        <p>Your role could not be identified. Please contact support.</p>
+    </div>
+{% endif %}

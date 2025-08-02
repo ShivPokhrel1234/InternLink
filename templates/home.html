@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Welcome! </h1><a href="{{ url_for('login') }}" class="btn btn-outline-danger float-end">Login</a>
+
+
+        <div class="container mt-5">
+    <h2 class="mb-4">Student Registration</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+     <form method="post" action="{{ url_for('register') }}">
+        <input type="hidden" name="role" value="Student">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username *</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email *</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password *</label>
+            <input type="password" class="form-control" id="password" name="password" required
+                   placeholder="At least 8 characters with letters, numbers, and symbols">
+        </div>
+
+        <div class="mb-3">
+            <label for="confirm_password" class="form-label">Confirm Password *</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="full_name" class="form-label">Full Name *</label>
+            <input type="text" class="form-control" id="full_name" name="full_name" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="university" class="form-label">University *</label>
+            <input type="text" class="form-control" id="university" name="university" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="course" class="form-label">Course *</label>
+            <input type="text" class="form-control" id="course" name="course" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="profile_image" class="form-label">Profile Image (optional)</label>
+            <input type="file" class="form-control" id="profile_image" name="profile_image" accept="image/*">
+        </div>
+
+        <div class="mb-3">
+            <label for="resume" class="form-label">Resume (PDF only, optional)</label>
+            <input type="file" class="form-control" id="resume" name="resume" accept="application/pdf">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+</html>
